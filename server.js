@@ -42,20 +42,21 @@ async function github(pathname, token) {
 app.post("/api/roast", async (req, res) => {
   try {
     const { repoUrl, githubToken, roastingLevel = "brutal" } = req.body || {};
+    const token = githubToken?.trim() || process.env.GITHUB_TOKEN;
     const levelGuidance = {
       gentle:
         "Be encouraging and diplomatic. Prioritize teachable suggestions over jokes.",
       constructive:
         "Be candid and constructive. Pair each criticism with a practical improvement and explain the reasoning.",
       brutal:
-        "Act as a brutal senior developer: be unfiltered, sharply funny, technically rigorous, and direct about consequences. Remain accurate and useful; do not insult people.",
+        "Act as a brutal senior developer focused on real sarcastic roasting: use dry wit, pointed comparisons, and clever technical punchlines to expose poor decisions. Be unfiltered, technically rigorous, and direct about consequences. Roast the code and its design choices, never the people; remain accurate and useful.",
     };
     if (!levelGuidance[roastingLevel])
       throw new Error("Choose one of the available roasting levels.");
     const { owner, repo } = parseRepoUrl(repoUrl || "");
     const tree = await github(
       `/repos/${owner}/${repo}/git/trees/HEAD?recursive=1`,
-      githubToken
+      token
     );
     const candidates = tree.tree.filter(
       (item) =>
@@ -70,7 +71,7 @@ app.post("/api/roast", async (req, res) => {
       files.map(async (file) => {
         const data = await github(
           `/repos/${owner}/${repo}/contents/${file.path}`,
-          githubToken
+          token
         );
         return {
           path: file.path,
@@ -87,7 +88,7 @@ app.post("/api/roast", async (req, res) => {
       );
     const prompt = `You are reviewing a public GitHub repository at the "${roastingLevel}" roasting level. ${
       levelGuidance[roastingLevel]
-    } Make the difference obvious in every file comment: Gentle reviewer comments must sound supportive and explain improvements; Constructive critic comments must be candid, specific, and solution-oriented; Brutal senior developer comments must be blunt, vivid, witty, and explicit about consequences. Do not invent issues. Only discuss evidence in the files. Return ONLY valid JSON matching this shape: {"summary":"short verdict","debtLevel":7,"files":[{"path":"src/x.js","comment":"file-specific roast","severity":"high|medium|low"}],"verdict":"one punchy closing line"}. debtLevel is an integer 1-10. Review these files from ${owner}/${repo}:\n\n${fileContents
+    } Make the difference obvious in every file comment: Gentle reviewer comments must sound supportive and explain improvements; Constructive critic comments must be candid, specific, and solution-oriented; Brutal senior developer comments must use real sarcasm, dry wit, vivid analogies, and pointed technical punchlines while explicitly explaining consequences. Roast the code and design choices, never the people. Do not invent issues. Only discuss evidence in the files. Return ONLY valid JSON matching this shape: {"summary":"short verdict","debtLevel":7,"files":[{"path":"src/x.js","comment":"file-specific roast","severity":"high|medium|low"}],"verdict":"one punchy closing line"}. debtLevel is an integer 1-10. Review these files from ${owner}/${repo}:\n\n${fileContents
       .map((file) => `--- ${file.path} ---\n${file.content}`)
       .join("\n")}`;
     const openaiBaseUrl = (

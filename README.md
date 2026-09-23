@@ -11,4 +11,4 @@ A small React + Vite app that fetches a bounded set of files from a GitHub repos
 
 If the API project is configured for EU data residency, also set `OPENAI_API_BASE_URL=https://eu.api.openai.com/v1`. EU regional processing requires the EU API hostname.
 
-The OpenAI key is never sent to the browser. A GitHub personal access token is optional and should only be used for repositories you are allowed to access. In the current implementation the token is held in memory for the request and is not persisted.
+The OpenAI key is never sent to the browser. A GitHub personal access token is optional and should only be used for repositories you are allowed to access. The server uses `GITHUB_TOKEN` from `.env` when no token is entered in the UI; an entered token takes precedence. Tokens are held in memory for the request and are not persisted.

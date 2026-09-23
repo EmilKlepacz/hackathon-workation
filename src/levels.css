@@ -93,3 +93,23 @@
 .verdict strong {
   font-size: 18px;
 }
+.download-report {
+  float: none;
+  margin-left: 10px;
+  background: transparent;
+  border: 1px solid #52695a;
+  color: #c5f57b;
+  padding: 11px 16px;
+  font: 600 11px "DM Mono";
+  cursor: pointer;
+}
+.download-report span {
+  font-size: 16px;
+  margin-left: 12px;
+}
+@media (max-width: 650px) {
+  .download-report {
+    display: block;
+    margin: 12px 0 0;
+  }
+}
