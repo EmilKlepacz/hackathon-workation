@@ -1,0 +1,95 @@
+.level-picker {
+  clear: both;
+  border-top: 1px solid #27342b;
+  margin-top: 22px;
+  padding-top: 16px;
+}
+.level-label {
+  color: #b4c8b7;
+  font: 11px "DM Mono";
+  letter-spacing: 0.08em;
+  margin-bottom: 11px;
+}
+.level-options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 7px;
+  width: 100%;
+}
+.terminal-body .level-option {
+  float: none;
+  width: 100%;
+  min-width: 0;
+  background: #202d24;
+  border: 1px solid #52695a;
+  color: #d9e6d9;
+  padding: 9px 7px;
+  text-align: left;
+  cursor: pointer;
+  min-height: 59px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.level-option span,
+.level-option small {
+  display: block;
+  margin: 0;
+}
+.level-option span {
+  color: #f0f7ef;
+  font: 13px "DM Mono";
+  line-height: 1.25;
+  white-space: nowrap;
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+.level-option small {
+  color: #b4c8b7;
+  font: 11px "DM Mono";
+  line-height: 1.35;
+  margin-top: 6px;
+}
+.terminal-body .level-option.selected {
+  border-color: #c5f57b;
+  background: #304a2f;
+  box-shadow: inset 3px 0 #c5f57b;
+}
+.level-option.selected span {
+  color: #e0ffad;
+}
+
+.report-top p,
+.repo-name {
+  font-size: 13px;
+}
+.report-top strong {
+  font-size: 20px;
+}
+.score small,
+.verdict span {
+  font-size: 11px;
+}
+.summary p {
+  font-size: 22px;
+}
+.file {
+  padding: 21px 0;
+}
+.file-index,
+.file code {
+  font-size: 13px;
+}
+.severity {
+  font-size: 11px;
+}
+.file p {
+  color: #b5c4b7;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.verdict {
+  padding: 27px 0;
+}
+.verdict strong {
+  font-size: 18px;
+}
