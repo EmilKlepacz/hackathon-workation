@@ -6,7 +6,7 @@ A small React + Vite app that fetches a bounded set of files from a GitHub repos
 
 1. Install Node.js 18+.
 2. Run `npm install`.
-3. Copy `.env.example` to `.env` and set `OPENAI_API_KEY`.
+3. Copy `.env.example` to `.env` and set `OPENAI_API_KEY`. Optionally set `GITHUB_TOKEN` to use an authenticated GitHub request without entering a token in the UI.
 4. Run `npm run dev` and open the Vite URL.
 
 If the API project is configured for EU data residency, also set `OPENAI_API_BASE_URL=https://eu.api.openai.com/v1`. EU regional processing requires the EU API hostname.
