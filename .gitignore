@@ -1,0 +1,45 @@
+# Dependencies and build output
+node_modules/
+dist/
+coverage/
+.vite/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Logs and local runtime files
+*.log
+logs/
+*.pid
+*.seed
+
+# IntelliJ IDEA / JetBrains
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Editor and OS swap files
+*.swp
+*.swo
+*~
+
+# Temporary files
+tmp/
+temp/
